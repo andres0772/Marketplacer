@@ -1,0 +1,29 @@
+site_name: Marketplace Artesanal - Documentación
+site_description: Documentación del proyecto Marketplace Artesanal con arquitectura de microservicios
+site_author: Equipo Marketplace Artesanal
+
+theme:
+  name: material
+  palette:
+    primary: orange
+    accent: amber
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+
+nav:
+  - Inicio: index.md
+  - Guía de Usuario: user-guide.md
+  - API: api.md
+  - Base de Datos: database.md
+  - Desarrollo: development.md
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - tables

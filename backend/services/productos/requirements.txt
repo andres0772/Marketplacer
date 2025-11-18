@@ -1,0 +1,6 @@
+# Dependencias básicas para un servicio FastAPI
+fastapi
+uvicorn
+psycopg2-binary
+sqlalchemy
+python-dotenv

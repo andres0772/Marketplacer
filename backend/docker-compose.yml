@@ -1,0 +1,175 @@
+services:
+  # API Gateway (FastAPI)
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "8000:8000"
+    depends_on:
+      - auth-service
+      - pagos-service
+      - pedidos-service
+      - productos-service
+    environment:
+      - AUTH_SERVICE_URL=${AUTH_SERVICE_URL}
+      - PRODUCTOS_SERVICE_URL=${PRODUCTOS_SERVICE_URL}
+      - PEDIDOS_SERVICE_URL=${PEDIDOS_SERVICE_URL}
+      - PAGOS_SERVICE_URL=${PAGOS_SERVICE_URL}
+    networks:
+      - app-network
+
+  # Authentication microservice
+  auth-service:
+    build: ./services/authentication
+    container_name: auth-service
+    ports:
+      - "8001:8001"
+    environment:
+      - DATABASE_URL=${AUTH_DB_URL}
+    depends_on:
+      auth-db:
+        condition: service_healthy
+    volumes:
+      - ./common:/app/common
+    networks:
+      - app-network
+
+  # Database for authentication service (MongoDB)
+  auth-db:
+    image: mongo:latest
+    container_name: auth-db
+    ports:
+      - "27018:27017"
+    volumes:
+      - auth_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+    restart: always
+
+  # Payments microservice
+  pagos-service:
+    build: ./services/pagos
+    container_name: pagos-service
+    ports:
+      - "8002:8002"
+    environment:
+      - DATABASE_URL=${PAGOS_DB_URL}
+    depends_on:
+      pagos-db:
+        condition: service_healthy
+    volumes:
+      - ./common:/app/common
+    networks:
+      - app-network
+
+  # Database for payments service (PostgreSQL)
+  pagos-db:
+    image: postgres:latest
+    container_name: pagos-db
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${PAGOS_DB_NAME}
+    ports:
+      - "5435:5432"
+    volumes:
+      - pagos_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${PAGOS_DB_NAME} -q"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+    restart: always
+
+  # Orders microservice
+  pedidos-service:
+    build: ./services/pedidos
+    container_name: pedidos-service
+    ports:
+      - "8003:8003"
+    environment:
+      - DATABASE_URL=${PEDIDOS_DB_URL}
+    depends_on:
+      pedidos-db:
+        condition: service_healthy
+    volumes:
+      - ./common:/app/common
+    networks:
+      - app-network
+
+  # Database for orders service (PostgreSQL)
+  pedidos-db:
+    image: postgres:latest
+    container_name: pedidos-db
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${PEDIDOS_DB_NAME}
+    ports:
+      - "5433:5432"
+    volumes:
+      - pedidos_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${PEDIDOS_DB_NAME} -q"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+    restart: always
+
+  # Products microservice
+  productos-service:
+    build: ./services/productos
+    container_name: productos-service
+    ports:
+      - "8004:8004"
+    environment:
+      - DATABASE_URL=${PRODUCTOS_DB_URL}
+    depends_on:
+      productos-db:
+        condition: service_healthy
+    volumes:
+      - ./common:/app/common
+    networks:
+      - app-network
+
+  # Database for products service (PostgreSQL)
+  productos-db:
+    image: postgres:latest
+    container_name: productos-db
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${PRODUCTOS_DB_NAME}
+    ports:
+      - "5434:5432"
+    volumes:
+      - productos_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${PRODUCTOS_DB_NAME} -q"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+    restart: always
+
+# Docker network
+networks:
+  app-network:
+    driver: bridge
+
+# Docker volumes
+volumes:
+  auth_data:
+  pagos_data:
+  pedidos_data:
+  productos_data:
