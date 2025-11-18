@@ -26,8 +26,8 @@ Esta guía te ayudará a configurar el entorno de desarrollo para el Marketplace
 ### 1. Clonar el Repositorio
 
 ```bash
-git clone <repository-url>
-cd marketplace-artesanal
+git clone https://github.com/andres0772/Marketplacer.git    
+cd Marketplacer
 ```
 
 ### 2. Configurar Backend (Microservicios)

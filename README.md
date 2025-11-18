@@ -20,13 +20,13 @@
 
 Sigue estos pasos para comenzar tu proyecto:
 
-1. Fork del repositorio https://github.com/andres0772/MARKETPLACE_ARTESANAL.git, con un nombre relacionado con el proyecto de cada grupo.
+1. Fork del repositorio https://github.com/andres0772/Marketplacer.git, con un nombre relacionado con el proyecto de cada grupo.
 
 2. Clonar el repositorio base:
 
     ```bash
-    git clone https://github.com/andres0772/MARKETPLACE_ARTESANAL.git 
-    cd MARKETPLACE_ARTESANAL
+    git clone https://github.com/andres0772/Marketplacer.git 
+    cd Marketplacer
     ```
 
 2. Configuración inicial:
