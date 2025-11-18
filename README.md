@@ -70,3 +70,34 @@ docker-compose up --build
 ```
 
 Esto construirá las imágenes y ejecutará todos los contenedores. Podrás acceder al frontend en `http://localhost:5000` y al API Gateway en `http://localhost:8000`.
+
+**Nota**: si necesitas mas informacion puedes verla en la documentacion automatica con Mkdocs para verlo ve a la terminal y dirigete a esta carpeta:
+
+```bash
+cd Marketplacer
+```
+
+luego creas un entorno virtual con:
+
+```bash
+python -m venv venv
+source venv/bin/activate
+```
+
+luego instala las dependencias con:
+
+```bash
+pip install mkdocs
+pip install mkdocs-material
+```
+
+luego ejecuta el servidor con:
+
+```bash
+mkdocs serve
+```
+
+y dirijete a http://127.0.0.1:8000/
+
+
+
