@@ -234,7 +234,7 @@ docker compose logs -f api-gateway
 docker compose logs -f productos-service
 ```
 ```
-Esto construirá las imágenes y ejecutará todos los contenedores. Podrás acceder al frontend en `http://localhost:5173` y al API Gateway en `http://localhost:8000`.
+Esto construirá las imágenes y ejecutará todos los contenedores. Podrás acceder al frontend en `http://localhost:5173` y al API Gateway en `http://localhost:8000`, y ver los demas edpoint 8002, 8003 y 8004
 ```
 
 ### configuracion para ver la documentacion automatica con Mkdocs
