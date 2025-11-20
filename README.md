@@ -158,25 +158,32 @@ marketplace-artesanal/
 Crear archivo `.env` con en la carpeta frontend:
 ```
 cd frontend
+```
+### colocar esto dentro del archivo .env
 env
 VITE_API_GATEWAY_URL=http://localhost:8000
 
-1. **Frontend**:
+### iniciar el frontend
+
 ```bash
 cd frontend/
-
+```
+## instalar dependencias y iniciar
+```bash
 npm install
 npm run build
 ```
 
-#### Variables de Entorno
+#### Configuracion de la variable de entorno
 
 Crea un archivo `.env` en la raíz del proyecto:
 
 ```
 cd backend/
+```
 
 env
+```
 # URLs para comunicación entre contenedores
 AUTH_SERVICE_URL=http://auth-service:8001
 PRODUCTOS_SERVICE_URL=http://productos-service:8004
@@ -202,20 +209,14 @@ PEDIDOS_DB_URL=postgresql://user:password@pedidos-db:5432/pedidos_db
 PRODUCTOS_DB_URL=postgresql://user:password@productos-db:5432/productos_db
 ```
 
-**Backend** (con Docker):
+**Iniciar los microservicios** (con Docker):
 
 ```bash
 cd backend
 docker-compose up -d
 ```
 
-#### Iniciar Servicios Backend
-
-```bash
-docker-compose up -d
-```
-
-Verificar que todos los servicios estén corriendo:
+#### Verificar que todos los servicios estén corriendo:
 
 ```bash
 docker-compose ps
@@ -232,10 +233,10 @@ docker-compose logs -f api-gateway
 docker-compose logs -f productos-service
 
 
-Esto construirá las imágenes y ejecutará todos los contenedores. Podrás acceder al frontend en `http://localhost:5000` y al API Gateway en `http://localhost:8000`.
+Esto construirá las imágenes y ejecutará todos los contenedores. Podrás acceder al frontend en `http://localhost:5173` y al API Gateway en `http://localhost:8000`.
 
 **Nota**: si necesitas mas informacion puedes verla en la documentacion automatica con Mkdocs para verlo ve a la terminal y dirigete a esta carpeta:
-```
+
 
 ```bash
 cd Marketplacer
