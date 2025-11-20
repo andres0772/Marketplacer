@@ -176,7 +176,7 @@ npm run build
 
 #### Configuracion de la variable de entorno
 
-Crea un archivo `.env` en la raíz del proyecto:
+Crea un archivo `.env` en la raíz de la carpeta backend:
 
 ```
 cd backend/
@@ -213,29 +213,30 @@ PRODUCTOS_DB_URL=postgresql://user:password@productos-db:5432/productos_db
 
 ```bash
 cd backend
-docker-compose up -d
+docker compose up -d
 ```
 
 #### Verificar que todos los servicios estén corriendo:
 
 ```bash
-docker-compose ps
+docker compose ps
 ```
 
 #### Ver Logs de Servicios
 
 ```bash
 # Todos los servicios
-docker-compose logs -f
-
+docker compose logs -f
+```
 # Servicio específico
-docker-compose logs -f api-gateway
-docker-compose logs -f productos-service
-
+```
+docker compose logs -f api-gateway
+docker compose logs -f productos-service
+```
 
 Esto construirá las imágenes y ejecutará todos los contenedores. Podrás acceder al frontend en `http://localhost:5173` y al API Gateway en `http://localhost:8000`.
 
-**Nota**: si necesitas mas informacion puedes verla en la documentacion automatica con Mkdocs para verlo ve a la terminal y dirigete a esta carpeta:
+### configuracion para ver la documentacion automatica con Mkdocs
 
 
 ```bash
