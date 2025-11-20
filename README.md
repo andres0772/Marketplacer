@@ -171,7 +171,7 @@ cd frontend/
 ## instalar dependencias y iniciar
 ```bash
 npm install
-npm run build
+npm run dev
 ```
 
 #### Configuracion de la variable de entorno
@@ -233,8 +233,9 @@ docker compose logs -f
 docker compose logs -f api-gateway
 docker compose logs -f productos-service
 ```
-
+```
 Esto construirá las imágenes y ejecutará todos los contenedores. Podrás acceder al frontend en `http://localhost:5173` y al API Gateway en `http://localhost:8000`.
+```
 
 ### configuracion para ver la documentacion automatica con Mkdocs
 
